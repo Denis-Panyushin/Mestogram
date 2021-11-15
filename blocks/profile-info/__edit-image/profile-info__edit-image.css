@@ -1,0 +1,6 @@
+@media screen and (max-width:425px) and (min-width:320px) {
+  .profile-info__edit-image {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -5,3 +5,10 @@
   align-items: center;
   justify-items: self-end;
 }
+
+@media screen and (max-width:425px) and (min-width:320px) {
+  .profile {
+    min-width: calc(100% - 38px);
+    flex-direction: column;
+  }
+}

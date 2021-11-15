@@ -5,7 +5,15 @@
   border: 1px solid #fff;
   margin-left: auto;
 }
+
 .profile__add-button:hover{
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width:425px) and (min-width:320px) {
+  .profile__add-button {
+    width: 282px;
+    margin: 0;
+  }
 }
