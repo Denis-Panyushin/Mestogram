@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Denis Panyushin">
+  <meta name="discription" content="Проектная работа">
+  <meta name="keywords" content="java script, фотографии, профиль">
+  <title>Практика скриптов</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="./image/logo.svg" class="header__logo">
+    </header>
+    <main class="content">
+      <div class="profile">
+        <img class="profile__avatar" src="./image/image.jpg">
+        <div class="profile-info">
+          <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+          <button class="profile-info__edit-button"><img src="./image/edit-button.svg"></button>
+          <p class="profile-info__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button"><img class="profile__add-button_plus" src="./image/plus.svg"></button>
+      </div>
+      <div class="popup">
+        <form class="popup__container">
+          <p class="popup__edit">Редактировать профиль</p>
+          <input type="text" class="popup__text popup__text_type_name">
+          <input type="text" class="popup__text popup__text_type_description">
+          <button class="popup__submit">Сохранить</button>
+          <button class="popup__escape"><img src="./image/close-icon.svg"></button>
+        </form>
+      </div>
+      <div class="elements">
+        <div class="element">
+          <img class="element__image" src="./image/karachevsk.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Карачаевск</h2>
+            <button class="element__button"><img class="element__button_disabled element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./image/elbrus.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Гора Эльбрус</h2>
+            <button class="element__button"><img class="element__button_disabled element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./image/dombay.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Домбай</h2>
+            <button class="element__button"><img class="element__button_disabled element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./image/elbrus.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Гора Эльбрус</h2>
+            <button class="element__button"><img class="element__button_disabled element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./image/dombay.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Домбай</h2>
+            <button class="element__button"><img class="element__button_disabled element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./image/karachevsk.jpg">
+          <div class="element__info">
+            <h2 class="element__description">Карачаево-Черкессия</h2>
+            <button class="element__button"><img class="element__button_active" src="./image/like.svg"></button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2021. Панюшин Денис</p>
+    </footer>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

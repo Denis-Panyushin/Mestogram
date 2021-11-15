@@ -1,0 +1,11 @@
+.profile-info__description {
+  min-width: 100%;
+  font-family: 'Inter', 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}

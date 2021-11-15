@@ -1,0 +1,7 @@
+.element__info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  margin-top: 25px;
+}

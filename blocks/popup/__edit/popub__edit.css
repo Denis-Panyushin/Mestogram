@@ -1,0 +1,13 @@
+.popup__edit {
+  font-family: 'Inter', 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  margin-top: 34px;
+  margin-bottom: 54px;
+  margin-left: 36px;
+}

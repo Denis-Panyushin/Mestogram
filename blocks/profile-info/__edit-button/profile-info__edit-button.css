@@ -1,0 +1,10 @@
+.profile-info__edit-button {
+  background-color: #000;
+  border: none;
+  padding: 0;
+  margin-left: 18px;
+}
+.profile-info__edit-button:hover{
+  opacity: .6;
+  cursor: pointer;
+}
