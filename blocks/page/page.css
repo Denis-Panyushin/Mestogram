@@ -5,6 +5,7 @@
   margin: 0;
   padding-top: 45px;
 }
+
 @media screen and (max-width: 425px) and (min-width: 320px) {
   .page {
     padding-top: 27px;

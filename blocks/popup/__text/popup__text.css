@@ -11,6 +11,13 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
-.popup__text:last-child {
+
+.popup__text:last-of-type {
   margin-top: 30px;
+}
+
+@media screen and (max-width: 700px) and (min-width: 320px) {
+  .popup__text {
+    width: 238px;
+  }
 }
