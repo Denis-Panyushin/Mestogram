@@ -20,4 +20,4 @@ JavaScript немного сложный язык программировани
 
 **Ссылка на сатй**
 
-[Сайт Путешествие по России](https://denis-panyushin.github.io/russian-to-travel/)
+[Сайт Mesto Russia](https://denis-panyushin.github.io/Mestogram/)
