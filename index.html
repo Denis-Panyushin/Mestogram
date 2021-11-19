@@ -19,63 +19,63 @@
         <img class="profile__avatar" src="./image/image.jpg" alt="аватар">
         <div class="profile-info">
           <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-          <button class="profile-info__edit-button"><img class="profile-info__edit-image" src="./image/edit-button.svg" alt="редактировать"></button>
+          <button type="button" class="profile-info__edit-button"><img class="profile-info__edit-image" src="./image/edit-button.svg" alt="редактировать"></button>
           <p class="profile-info__description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
-      </div>
-      <div class="popup">
-        <form class="popup__container">
-          <p class="popup__edit">Редактировать профиль</p>
-          <input type="text" class="popup__text popup__text_type_name">
-          <input type="text" class="popup__text popup__text_type_description">
-          <button class="popup__submit">Сохранить</button>
-          <button class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
-        </form>
+        <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
       </div>
       <div class="elements">
         <div class="element">
           <img class="element__image" src="./image/karachevsk.jpg" alt="карачаевск">
           <div class="element__info">
             <h2 class="element__description">Карачаевск</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./image/elbrus.jpg" alt="гора эльбрус">
           <div class="element__info">
             <h2 class="element__description">Гора Эльбрус</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./image/dombay.jpg" alt="домбай">
           <div class="element__info">
             <h2 class="element__description">Домбай</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./image/elbrus.jpg" alt="гора эльбрус">
           <div class="element__info">
             <h2 class="element__description">Гора Эльбрус</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./image/dombay.jpg" alt="домбай">
           <div class="element__info">
             <h2 class="element__description">Домбай</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./image/karachevsk.jpg" alt="карачаево-черкессия">
           <div class="element__info">
             <h2 class="element__description">Карачаево-Черкессия</h2>
-            <button class="element__button element__button_active"><img src="./image/like.svg" alt="нравится"></button>
+            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
+      </div>
+      <div class="popup">
+        <form name="popup-edit-profile" action="URL" method="post" class="popup__container">
+          <h2 class="popup__edit">Редактировать профиль</h2>
+          <input type="text" name="profile-name" class="popup__text popup__text_type_name">
+          <input type="text" name="profile-description" class="popup__text popup__text_type_description">
+          <button type="submit" class="popup__submit">Сохранить</button>
+          <button type="reset" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+        </form>
       </div>
     </main>
     <footer class="footer">

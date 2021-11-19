@@ -2,6 +2,6 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  margin-bottom: 32px;
-  margin-top: 25px;
+  padding-top: 19px;
+  padding-bottom: 28px;
 }
