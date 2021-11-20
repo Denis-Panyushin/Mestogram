@@ -24,7 +24,7 @@
         </div>
         <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
       </div>
-      <div class="elements">
+      <section class="elements">
         <div class="element">
           <img class="element__image" src="./image/karachevsk.jpg" alt="карачаевск">
           <div class="element__info">
@@ -67,15 +67,17 @@
             <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
           </div>
         </div>
-      </div>
+      </section>
       <div class="popup">
-        <form name="popup-edit-profile" action="URL" method="post" class="popup__container">
-          <h2 class="popup__edit">Редактировать профиль</h2>
-          <input type="text" name="profile-name" class="popup__text popup__text_type_name">
-          <input type="text" name="profile-description" class="popup__text popup__text_type_description">
-          <button type="submit" class="popup__submit">Сохранить</button>
-          <button type="reset" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
-        </form>
+        <div class="popup__container">
+          <form name="popup-edit-profile" action="URL" method="post" class="popup__edit-profile">
+            <h2 class="popup__edit">Редактировать профиль</h2>
+            <input placeholder="Имя" type="text" name="profile-name" class="popup__text popup__text_type_name">
+            <input placeholder="Профессияы" type="text" name="profile-description" class="popup__text popup__text_type_description">
+            <button type="submit" class="popup__submit">Сохранить</button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+          </form>
+        </div>
       </div>
     </main>
     <footer class="footer">
