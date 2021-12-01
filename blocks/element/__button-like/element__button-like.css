@@ -1,5 +1,5 @@
 .element__button-like {
-  border: 0;
+  border: none;
   background-color: rgba(0, 0, 0, 0);
   width: 30px;
   height: 20px;
@@ -9,7 +9,6 @@
   margin-left: 2px;
   margin-right: auto;
   background-image: url(../../../image/like.png);
-  border: none;
 }
 .element__button-like:hover {
   cursor: pointer;
