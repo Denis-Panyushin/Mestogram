@@ -25,56 +25,27 @@
         <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
       </div>
       <section class="elements">
-        <div class="element">
-          <img class="element__image" src="./image/karachevsk.jpg" alt="карачаевск">
-          <div class="element__info">
-            <h2 class="element__description">Карачаевск</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/elbrus.jpg" alt="гора эльбрус">
-          <div class="element__info">
-            <h2 class="element__description">Гора Эльбрус</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/dombay.jpg" alt="домбай">
-          <div class="element__info">
-            <h2 class="element__description">Домбай</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/elbrus.jpg" alt="гора эльбрус">
-          <div class="element__info">
-            <h2 class="element__description">Гора Эльбрус</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/dombay.jpg" alt="домбай">
-          <div class="element__info">
-            <h2 class="element__description">Домбай</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/karachevsk.jpg" alt="карачаево-черкессия">
-          <div class="element__info">
-            <h2 class="element__description">Карачаево-Черкессия</h2>
-            <button type="button" class="element__button"><img src="./image/like.svg" alt="нравится"></button>
-          </div>
-        </div>
+
       </section>
       <div class="popup">
         <div class="popup__container">
           <form name="popup-edit-profile" action="URL" method="post" class="popup__edit-profile">
-            <h2 class="popup__edit">Редактировать профиль</h2>
+            <h2 class="popup__header">Редактировать профиль</h2>
             <input placeholder="Имя" type="text" name="profile-name" class="popup__text popup__text_type_name">
-            <input placeholder="Профессияы" type="text" name="profile-description" class="popup__text popup__text_type_description">
+            <input placeholder="Профессия" type="text" name="profile-description" class="popup__text popup__text_type_description">
             <button type="submit" class="popup__submit">Сохранить</button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+          </form>
+          <form name='popup-add' class="popup__add">
+            <h2 class="popup__header">Новое место</h2>
+            <input placeholder="Название" type="text" name="location" class="popup__text popup__text_type_location">
+            <input placeholder="Ссылка на картинку" type="text" name="img-link" class="popup__text popup__text_type_img-link">
+            <button type="submit" class="popup__submit">Добавить</button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+          </form>
+          <form name='popup-image' class="popup__image">
+            <img class="popup__pic" alt="изображение">
+            <h2 class="popup__description"></h2>
             <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
           </form>
         </div>
@@ -84,6 +55,16 @@
       <p class="footer__copyright">&copy;2021. Панюшин Денис</p>
     </footer>
   </div>
+  <template id='template-element'>
+    <div class="element">
+      <img class="element__image" alt="изображение">
+      <button type="button" class="element__button-delete"></button>
+      <div class="element__info">
+        <h2 class="element__description"></h2>
+        <button type="button" class="element__button-like"></button>
+      </div>
+    </div>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
