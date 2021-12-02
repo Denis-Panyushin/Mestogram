@@ -57,24 +57,18 @@ function getEl (element) {
     popupDescription.textContent = element.name;
     popupPicture.setAttribute('src', element.link);
     openPopup(imagePopup);
-
-    escapeImagePopupBtn.addEventListener('click', function () {
-      closePopup (imagePopup);
-
-    })
-
   });
 
 
   return newItem;
-}
+};
 
 //Функция удаления карточки
 function deleteEl (evt) {
   const targetEl = evt.target;
   const listItem = targetEl.closest('.element');
   listItem.remove();
-}
+};
 
 //Функция лайка карточки
 function likeEl (evt) {
@@ -82,10 +76,9 @@ function likeEl (evt) {
   const listItem = targetEl.closest('.element__button-like');
 
   listItem.classList.toggle('element__button-like_active');
-}
+};
 
 //Формы для редактирования и добавление карточек
-const popup = document.querySelectorAll('.popup'); //Блок попап
 const nameInput = document.querySelector('.popup__text_type_name'); //Поле Имя
 const jobInput = document.querySelector('.popup__text_type_description'); //Поле профессии
 const infoName = document.querySelector('.profile-info__name'); //Элемент имя
@@ -165,3 +158,7 @@ function formSubmitHandlerEdit (evt) {
 
 profileForm.addEventListener('submit', formSubmitHandlerEdit);
 
+//Функция закрытия попапа изображения
+escapeImagePopupBtn.addEventListener('click', function () {
+  closePopup (imagePopup);
+});
