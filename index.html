@@ -11,10 +11,12 @@
 </head>
 <body>
   <div class="page">
+    <!--Шапка сайта-->
     <header class="header">
       <img src="./image/logo.svg" class="header__logo" alt="лого">
     </header>
     <main class="content">
+      <!--Секция профиля-->
       <div class="profile">
         <img class="profile__avatar" src="./image/image.jpg" alt="аватар">
         <div class="profile-info">
@@ -24,9 +26,11 @@
         </div>
         <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
       </div>
+      <!--Секция для карточек-->
       <section class="elements">
       </section>
-      <div class="popup">
+      <!--Форма редактирования профиля-->
+      <div class="popup popup_type_edit-profile">
         <div class="popup__container">
           <form name="popup-edit-profile" action="URL" method="post" class="popup__edit-profile">
             <h2 class="popup__header">Редактировать профиль</h2>
@@ -35,6 +39,11 @@
             <button type="submit" class="popup__submit">Сохранить</button>
             <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
           </form>
+        </div>
+      </div>
+      <!--Форма добавления карточки-->
+      <div class="popup popup_type_add">
+        <div class="popup__container">
           <form name='popup-add' class="popup__add">
             <h2 class="popup__header">Новое место</h2>
             <input placeholder="Название" type="text" name="location" class="popup__text popup__text_type_location">
@@ -42,6 +51,11 @@
             <button type="submit" class="popup__submit">Добавить</button>
             <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
           </form>
+        </div>
+      </div>
+      <!--Форма открытия картинки-->
+      <div class="popup popup_type_image">
+        <div class="popup__container">
           <form name='popup-image' class="popup__image">
             <img class="popup__pic" alt="изображение">
             <h2 class="popup__description"></h2>
@@ -50,10 +64,12 @@
         </div>
       </div>
     </main>
+    <!--Подвал-->
     <footer class="footer">
       <p class="footer__copyright">&copy;2021. Панюшин Денис</p>
     </footer>
   </div>
+  <!--Элемент добавления карточки-->
   <template id='template-element'>
     <div class="element">
       <img class="element__image" alt="изображение">
