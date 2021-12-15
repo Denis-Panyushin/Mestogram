@@ -103,7 +103,7 @@ function openPopup (popup) {
 
 //Функция закрытия
 function closePopup (popup) {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
 };
 
 //Открытие формы добавления карточки
@@ -162,3 +162,26 @@ profileForm.addEventListener('submit', formSubmitHandlerEdit);
 escapeImagePopupBtn.addEventListener('click', function () {
   closePopup (imagePopup);
 });
+
+//Закрытие попапа на клавишу Esc
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
+  }
+})
+
+//Закрытие попап кликом на оверлэй
+
+//Создаем массив из попапов, чтобы закрывать тот который открылся
+Array.from(document.querySelectorAll('.popup')).forEach(popup => {
+  popup.addEventListener('click', function () {
+      closePopup(popup);
+  });
+})
+
+//Создаем массив из модальных окон, чтобы отменять закрытие при клике на модальное окно
+Array.from(document.querySelectorAll('.popup__form')).forEach((form) => {
+  form.addEventListener('click', function (form) {
+      form.stopPropagation();
+  });
+})

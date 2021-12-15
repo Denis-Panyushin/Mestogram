@@ -32,10 +32,12 @@
       <!--Форма редактирования профиля-->
       <div class="popup popup_type_edit-profile">
         <div class="popup__container">
-          <form name="popup-edit-profile" action="URL" method="post" class="popup__edit-profile">
+          <form novalidate name="popup-edit-profile" action="URL" method="post" class="popup__form popup__edit-profile">
             <h2 class="popup__header">Редактировать профиль</h2>
-            <input placeholder="Имя" type="text" name="profile-name" class="popup__text popup__text_type_name">
-            <input placeholder="Профессия" type="text" name="profile-description" class="popup__text popup__text_type_description">
+            <input required minlength="2" maxlength="40" placeholder="Имя" type="text" id="profile-name" name="profile-name" class="popup__text popup__text_type_name">
+            <span class="popup__text-error profile-name-error"></span>
+            <input required minlength="2" maxlength="200" placeholder="Профессия" type="text" id="profile-description" name="profile-description" class="popup__text popup__text_type_description">
+            <span class="popup__text-error profile-description-error"></span>
             <button type="submit" class="popup__submit">Сохранить</button>
             <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
           </form>
@@ -44,10 +46,12 @@
       <!--Форма добавления карточки-->
       <div class="popup popup_type_add">
         <div class="popup__container">
-          <form name='popup-add' class="popup__add">
+          <form novalidate name='popup-add' class="popup__form popup__add">
             <h2 class="popup__header">Новое место</h2>
-            <input placeholder="Название" type="text" name="location" class="popup__text popup__text_type_location">
-            <input placeholder="Ссылка на картинку" type="text" name="img-link" class="popup__text popup__text_type_img-link">
+            <input required minlength="2" maxlength="30" placeholder="Название" type="text" id="location" name="location" class="popup__text popup__text_type_location">
+            <span class="popup__text-error location-error"></span>
+            <input required type="url" placeholder="Ссылка на картинку" id="img-link" name="img-link" class="popup__text popup__text_type_img-link">
+            <span class="popup__text-error img-link-error"></span>
             <button type="submit" class="popup__submit">Добавить</button>
             <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
           </form>
@@ -81,5 +85,6 @@
     </div>
   </template>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
