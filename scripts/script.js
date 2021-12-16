@@ -46,6 +46,7 @@ function getEl (element) {
   const description = newItem.querySelector('.element__description');
   description.textContent = element.name;
   img.setAttribute('src', element.link);
+  img.setAttribute('alt', element.name);
 
   const deleteBtn = newItem.querySelector('.element__button-delete');
   deleteBtn.addEventListener('click', deleteEl);
@@ -56,6 +57,7 @@ function getEl (element) {
   img.addEventListener('click', function () {
     popupDescription.textContent = element.name;
     popupPicture.setAttribute('src', element.link);
+    img.setAttribute('alt', element.name);
     openPopup(imagePopup);
   });
 
@@ -72,10 +74,7 @@ function deleteEl (evt) {
 
 //Функция лайка карточки
 function likeEl (evt) {
-  const targetEl = evt.target;
-  const listItem = targetEl.closest('.element__button-like');
-
-  listItem.classList.toggle('element__button-like_active');
+  evt.target.classList.toggle('element__button-like_active');
 };
 
 //Формы для редактирования и добавление карточек
@@ -99,12 +98,22 @@ const escapeImagePopupBtn = imagePopup.querySelector('.popup__escape'); //Кно
 //Функция откртия
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', escHandler);
 };
 
 //Функция закрытия
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escHandler);
 };
+
+//Функция слушателя Esc
+function escHandler (evt) {
+  if (evt.key === "Escape" || evt.key === 'Esc'){
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 //Открытие формы добавления карточки
 openAddCardFormBtn.addEventListener('click', function () {
@@ -112,12 +121,17 @@ openAddCardFormBtn.addEventListener('click', function () {
 
   mestoNameInput.value = '';
   mestoLinkInput.value = '';
+
+  const button = addCardForm.querySelector('.popup__submit');
+  button.classList.add('popup__submit_disabled');
+  button.disabled = true;
 });
 
 //Закрытие формы добавления карточки
 escapeAddCardFormBtn.addEventListener('click', function () {
   closePopup (addCardForm);
 });
+
 
 //Функция добавления карточки
 function formSubmitHandlerAdd (evt) {
@@ -126,7 +140,7 @@ function formSubmitHandlerAdd (evt) {
   const inputMesto = mestoNameInput.value;
   const inputLink = mestoLinkInput.value;
   const listItem = getEl({name: inputMesto, link: inputLink});
-  container.prepend(listItem);
+  container.prepend(listItem)
 
   closePopup (addCardForm);
 }
@@ -139,6 +153,10 @@ openProfileFormBtn.addEventListener('click', function () {
   //Значения полей ввода при открытии
   nameInput.value = infoName.textContent;
   jobInput.value = description.textContent;
+
+  const button = profileForm.querySelector('.popup__submit');
+  button.classList.remove('popup__submit_disabled');
+  button.disabled = false;
 });
 
 //Закрытие формы редактирования профиля
@@ -163,25 +181,12 @@ escapeImagePopupBtn.addEventListener('click', function () {
   closePopup (imagePopup);
 });
 
-//Закрытие попапа на клавишу Esc
-document.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
-  }
-})
-
 //Закрытие попап кликом на оверлэй
 
 //Создаем массив из попапов, чтобы закрывать тот который открылся
 Array.from(document.querySelectorAll('.popup')).forEach(popup => {
-  popup.addEventListener('click', function () {
+  popup.addEventListener('click', function (evt) {
+    if  (evt.target === popup && !popup.classList.contains(evt.target)) {
       closePopup(popup);
+    }});
   });
-})
-
-//Создаем массив из модальных окон, чтобы отменять закрытие при клике на модальное окно
-Array.from(document.querySelectorAll('.popup__form')).forEach((form) => {
-  form.addEventListener('click', function (form) {
-      form.stopPropagation();
-  });
-})
