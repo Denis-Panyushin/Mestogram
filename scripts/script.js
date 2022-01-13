@@ -1,3 +1,6 @@
+import FormValidator from "./ValidatorForm.js";
+import Card from "./Card.js";
+
 // Карточки и контенер для них
 const initialCards = [
   {
@@ -26,57 +29,6 @@ const initialCards = [
   }
 ];
 
-//Добавление карточек в html разметку
-const container = document.querySelector('.elements'); //Контейнер для карточек
-const templateEl = document.querySelector('#template-element');
-
-function render () {
-  const el = initialCards.map((element) => {
-    return getEl(element);
-  });
-
-  container.append(...el);
-};
-
-render();
-//Функция генерации элемента
-function getEl (element) {
-  const newItem = templateEl.content.cloneNode(true);
-  const img = newItem.querySelector('.element__image');
-  const description = newItem.querySelector('.element__description');
-  description.textContent = element.name;
-  img.setAttribute('src', element.link);
-  img.setAttribute('alt', element.name);
-
-  const deleteBtn = newItem.querySelector('.element__button-delete');
-  deleteBtn.addEventListener('click', deleteEl);
-
-  const likeBtn = newItem.querySelector('.element__button-like');
-  likeBtn.addEventListener('click', likeEl);
-
-  img.addEventListener('click', function () {
-    popupDescription.textContent = element.name;
-    popupPicture.setAttribute('src', element.link);
-    img.setAttribute('alt', element.name);
-    openPopup(imagePopup);
-  });
-
-
-  return newItem;
-};
-
-//Функция удаления карточки
-function deleteEl (evt) {
-  const targetEl = evt.target;
-  const listItem = targetEl.closest('.element');
-  listItem.remove();
-};
-
-//Функция лайка карточки
-function likeEl (evt) {
-  evt.target.classList.toggle('element__button-like_active');
-};
-
 //Формы для редактирования и добавление карточек
 const nameInput = document.querySelector('.popup__text_type_name'); //Поле Имя
 const jobInput = document.querySelector('.popup__text_type_description'); //Поле профессии
@@ -91,9 +43,8 @@ const escapeProfileFormBtn = profileForm.querySelector('.popup__escape'); // К�
 const mestoNameInput = document.querySelector('.popup__text_type_location'); //Поле места изображения
 const mestoLinkInput = document.querySelector('.popup__text_type_img-link'); //Поле ссылки на изображение
 const imagePopup = document.querySelector('.popup_type_image'); //Попап изображения
-const popupPicture = imagePopup.querySelector('.popup__pic'); //Картинка карточки для попапа с изображением
-const popupDescription = imagePopup.querySelector('.popup__description'); //Название места изображения
 const escapeImagePopupBtn = imagePopup.querySelector('.popup__escape'); //Кнопка закрытия попа с изображением
+const container = document.querySelector('.elements'); //Контейнер для карточек
 
 //Функция откртия
 function openPopup (popup) {
@@ -139,7 +90,7 @@ function formSubmitHandlerAdd (evt) {
   //Значения полей которые надо сохранить
   const inputMesto = mestoNameInput.value;
   const inputLink = mestoLinkInput.value;
-  const listItem = getEl({name: inputMesto, link: inputLink});
+  const listItem =  new Card({name: inputMesto, link: inputLink}, '.template-element').generateEl();
   container.prepend(listItem)
 
   closePopup (addCardForm);
@@ -189,4 +140,34 @@ Array.from(document.querySelectorAll('.popup')).forEach(popup => {
     if  (evt.target === popup && !popup.classList.contains(evt.target)) {
       closePopup(popup);
     }});
-  });
+});
+
+//Добавления карточек на страницу
+initialCards.map((item) => {
+  const card = new Card(item, '.template-element');
+  const cardElement = card.generateEl();
+
+  document.querySelector('.elements').append(cardElement);
+});
+
+//Классы форм, полей ввода, кнопки отправки и ошибок
+const configValid = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__text',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__text_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+//Добавление валидации на страницу
+const enableValidation = (configValid) => {
+  const forms = Array.from(document.querySelectorAll(configValid.formSelector));
+  forms.forEach((form) => {
+    const validator = new FormValidator(configValid, form);
+    validator.enableValidation();
+    })
+  };
+
+enableValidation(configValid);
+
