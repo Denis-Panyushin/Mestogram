@@ -1,3 +1,5 @@
+import { openPopup } from "./script.js";
+
 export default class Card {
   constructor (data, elSelector) {
     this._link = data.link;//Ссылка на картинку
@@ -25,6 +27,7 @@ export default class Card {
     this._setEventListeners();
 
     this._element.querySelector('.element__image').src = this._link;
+    this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__description').textContent = this._name;
 
     return this._element;
@@ -45,7 +48,7 @@ export default class Card {
     this._popupDescription.textContent = this._name;
     this._popupPicture.setAttribute('src', this._link);
     this._element.querySelector('.element__image').setAttribute('alt', this._name);
-    this._imagePopup.classList.add('popup_opened');
+    openPopup(this._imagePopup);
   }
 
   //Слушатель для всех событий на карточке

@@ -1,4 +1,4 @@
-import FormValidator from "./ValidatorForm.js";
+import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 
 // Карточки и контенер для них
@@ -46,8 +46,14 @@ const imagePopup = document.querySelector('.popup_type_image'); //Попап и�
 const escapeImagePopupBtn = imagePopup.querySelector('.popup__escape'); //Кнопка закрытия попа с изображением
 const container = document.querySelector('.elements'); //Контейнер для карточек
 
+//Функция создания карточки
+function createCard(item) {
+  const listItem =  new Card(item, '.template-element').generateEl();
+  return listItem
+}
+
 //Функция откртия
-function openPopup (popup) {
+export function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', escHandler);
 };
@@ -73,9 +79,7 @@ openAddCardFormBtn.addEventListener('click', function () {
   mestoNameInput.value = '';
   mestoLinkInput.value = '';
 
-  const button = addCardForm.querySelector('.popup__submit');
-  button.classList.add('popup__submit_disabled');
-  button.disabled = true;
+  new FormValidator(configValid, addCardForm).resetValidation();
 });
 
 //Закрытие формы добавления карточки
@@ -85,18 +89,19 @@ escapeAddCardFormBtn.addEventListener('click', function () {
 
 
 //Функция добавления карточки
-function formSubmitHandlerAdd (evt) {
+function addHandlerFormSubmit (evt) {
   evt.preventDefault();
   //Значения полей которые надо сохранить
   const inputMesto = mestoNameInput.value;
   const inputLink = mestoLinkInput.value;
-  const listItem =  new Card({name: inputMesto, link: inputLink}, '.template-element').generateEl();
-  container.prepend(listItem)
+
+  const newCard = createCard({name: inputMesto, link: inputLink});
+  container.prepend(newCard);
 
   closePopup (addCardForm);
 }
 
-addCardForm.addEventListener('submit', formSubmitHandlerAdd);
+addCardForm.addEventListener('submit', addHandlerFormSubmit);
 
 //Открытие формы редактирования профиля
 openProfileFormBtn.addEventListener('click', function () {
@@ -105,9 +110,7 @@ openProfileFormBtn.addEventListener('click', function () {
   nameInput.value = infoName.textContent;
   jobInput.value = description.textContent;
 
-  const button = profileForm.querySelector('.popup__submit');
-  button.classList.remove('popup__submit_disabled');
-  button.disabled = false;
+  new FormValidator(configValid, profileForm).resetValidation();
 });
 
 //Закрытие формы редактирования профиля
@@ -116,7 +119,7 @@ escapeProfileFormBtn.addEventListener('click', function () {
 });
 
 //Функция редактирования карточки
-function formSubmitHandlerEdit (evt) {
+function editHandlerFormSubmit (evt) {
   evt.preventDefault();
   //Значения полей которые надо сохранить
   infoName.textContent = nameInput.value;
@@ -125,7 +128,7 @@ function formSubmitHandlerEdit (evt) {
   closePopup(profileForm);
 }
 
-profileForm.addEventListener('submit', formSubmitHandlerEdit);
+profileForm.addEventListener('submit', editHandlerFormSubmit);
 
 //Функция закрытия попапа изображения
 escapeImagePopupBtn.addEventListener('click', function () {
@@ -143,11 +146,9 @@ Array.from(document.querySelectorAll('.popup')).forEach(popup => {
 });
 
 //Добавления карточек на страницу
-initialCards.map((item) => {
-  const card = new Card(item, '.template-element');
-  const cardElement = card.generateEl();
-
-  document.querySelector('.elements').append(cardElement);
+initialCards.forEach(item => {
+  const cardElement = createCard(item);
+  container.append(cardElement);
 });
 
 //Классы форм, полей ввода, кнопки отправки и ошибок
@@ -162,12 +163,11 @@ const configValid = {
 
 //Добавление валидации на страницу
 const enableValidation = (configValid) => {
-  const forms = Array.from(document.querySelectorAll(configValid.formSelector));
-  forms.forEach((form) => {
-    const validator = new FormValidator(configValid, form);
-    validator.enableValidation();
-    })
-  };
+  const validatorProfileForm = new FormValidator(configValid, profileForm);
+  validatorProfileForm.enableValidation();
+  const validatorAddCardForm = new FormValidator(configValid, addCardForm);
+  validatorAddCardForm.enableValidation();
+};
 
 enableValidation(configValid);
 
