@@ -79,7 +79,7 @@ openAddCardFormBtn.addEventListener('click', function () {
   mestoNameInput.value = '';
   mestoLinkInput.value = '';
 
-  new FormValidator(configValid, addCardForm).resetValidation();
+  validatorAddCardForm.resetValidation();
 });
 
 //Закрытие формы добавления карточки
@@ -110,7 +110,7 @@ openProfileFormBtn.addEventListener('click', function () {
   nameInput.value = infoName.textContent;
   jobInput.value = description.textContent;
 
-  new FormValidator(configValid, profileForm).resetValidation();
+  validatorProfileForm.resetValidation();
 });
 
 //Закрытие формы редактирования профиля
@@ -162,10 +162,11 @@ const configValid = {
 };
 
 //Добавление валидации на страницу
-const enableValidation = (configValid) => {
-  const validatorProfileForm = new FormValidator(configValid, profileForm);
+const validatorProfileForm = new FormValidator(configValid, profileForm);
+const validatorAddCardForm = new FormValidator(configValid, addCardForm);
+
+const enableValidation = () => {
   validatorProfileForm.enableValidation();
-  const validatorAddCardForm = new FormValidator(configValid, addCardForm);
   validatorAddCardForm.enableValidation();
 };
 
