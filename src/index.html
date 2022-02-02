@@ -7,24 +7,23 @@
   <meta name="discription" content="Проектная работа">
   <meta name="keywords" content="java script, фотографии, профиль">
   <title>Практика скриптов</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
   <div class="page">
     <!--Шапка сайта-->
     <header class="header">
-      <img src="./image/logo.svg" class="header__logo" alt="лого">
+      <img src="<%=require('./image/logo.svg')%>" class="header__logo" alt="лого">
     </header>
     <main class="content">
       <!--Секция профиля-->
       <div class="profile">
-        <img class="profile__avatar" src="./image/image.jpg" alt="аватар">
+        <img class="profile__avatar" src="<%=require('./image/image.jpg')%>" alt="аватар">
         <div class="profile-info">
           <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile-info__edit-button"><img class="profile-info__edit-image" src="./image/edit-button.svg" alt="редактировать"></button>
+          <button type="button" class="profile-info__edit-button"><img class="profile-info__edit-image" src="<%=require('./image/edit-button.svg')%>" alt="редактировать"></button>
           <p class="profile-info__description">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="./image/plus.svg" alt="добавить"></button>
+        <button type="button" class="profile__add-button"><img class="profile__add-button-image" src="<%=require('./image/plus.svg')%>" alt="добавить"></button>
       </div>
       <!--Секция для карточек-->
       <section class="elements">
@@ -34,12 +33,12 @@
         <div class="popup__container">
           <form novalidate name="popup-edit-profile" action="URL" method="post" class="popup__form popup__edit-profile">
             <h2 class="popup__header">Редактировать профиль</h2>
-            <input required minlength="2" maxlength="40" placeholder="Имя" type="text" id="profile-name" name="profile-name" class="popup__text popup__text_type_name">
+            <input required minlength="2" maxlength="40" placeholder="Имя" type="text" id="profile-name" name="name" class="popup__text popup__text_type_name">
             <span class="popup__text-error profile-name-error"></span>
-            <input required minlength="2" maxlength="200" placeholder="Профессия" type="text" id="profile-description" name="profile-description" class="popup__text popup__text_type_description">
+            <input required minlength="2" maxlength="200" placeholder="Профессия" type="text" id="profile-description" name="description" class="popup__text popup__text_type_description">
             <span class="popup__text-error profile-description-error"></span>
             <button type="submit" class="popup__submit">Сохранить</button>
-            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="<%=require('./image/close-icon.svg')%>" alt="закрыть"></button>
           </form>
         </div>
       </div>
@@ -53,7 +52,7 @@
             <input required type="url" placeholder="Ссылка на картинку" id="img-link" name="img-link" class="popup__text popup__text_type_img-link">
             <span class="popup__text-error img-link-error"></span>
             <button type="submit" class="popup__submit">Добавить</button>
-            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="<%=require('./image/close-icon.svg')%>" alt="закрыть"></button>
           </form>
         </div>
       </div>
@@ -63,7 +62,7 @@
           <form name='popup-image' class="popup__image">
             <img class="popup__pic" alt="изображение">
             <h2 class="popup__description"></h2>
-            <button type="button" class="popup__escape"><img class="popup__escape-image" src="./image/close-icon.svg" alt="закрыть"></button>
+            <button type="button" class="popup__escape"><img class="popup__escape-image" src="<%=require('./image/close-icon.svg')%>" alt="закрыть"></button>
           </form>
         </div>
       </div>
@@ -84,6 +83,5 @@
       </div>
     </div>
   </template>
-  <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>

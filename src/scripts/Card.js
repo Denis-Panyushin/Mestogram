@@ -1,13 +1,9 @@
-import { openPopup } from "./script.js";
-
 export default class Card {
-  constructor (data, elSelector) {
+  constructor (data, elSelector, { handleCardClick }) {
     this._link = data.link;//Ссылка на картинку
     this._name = data.name;//Имя картинки
     this._elSelector = elSelector;//Селектор карточки
-    this._imagePopup = document.querySelector('.popup_type_image'); //Попап изображения
-    this._popupPicture = this._imagePopup.querySelector('.popup__pic'); //Картинка карточки для попапа с изображением
-    this._popupDescription = this._imagePopup.querySelector('.popup__description'); //Название места изображения
+    this._handleCardClick = handleCardClick;
   }
 
   //Находим в ДОМ и клонируем
@@ -45,10 +41,7 @@ export default class Card {
 
   //Открытие попапа карточки
   _handleOpenPopup() {
-    this._popupDescription.textContent = this._name;
-    this._popupPicture.setAttribute('src', this._link);
-    this._element.querySelector('.element__image').setAttribute('alt', this._name);
-    openPopup(this._imagePopup);
+    this._handleCardClick();
   }
 
   //Слушатель для всех событий на карточке
