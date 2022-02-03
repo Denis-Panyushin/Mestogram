@@ -33,8 +33,6 @@ export const profileForm = '.popup_type_edit-profile'; //Форма редакт
 export const addCardForm = '.popup_type_add'; //Форма добавления карточки
 export const openAddCardFormBtn = document.querySelector('.profile__add-button'); //Кнопка открытия попапа добавления карточки
 export const openProfileFormBtn = document.querySelector('.profile-info__edit-button'); //Кнопка открытия попапа редактирования страницы
-export const mestoNameInput = document.querySelector('.popup__text_type_location'); //Поле места изображения
-export const mestoLinkInput = document.querySelector('.popup__text_type_link'); //Поле ссылки на изображение
 export const imagePopup = '.popup_type_image'; //Попап изображения
 export const configValid = {
   formSelector: '.popup__form',

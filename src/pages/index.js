@@ -12,8 +12,6 @@ import {
   addCardForm,
   openAddCardFormBtn,
   openProfileFormBtn,
-  mestoNameInput,
-  mestoLinkInput,
   imagePopup,
   nameInput,
   jobInput,
@@ -83,8 +81,6 @@ const formAddCard = new PopupWithForm(addCardForm, {
 });
 
 openAddCardFormBtn.addEventListener('click', function () {
-  mestoNameInput.value = '';
-  mestoLinkInput.value = '';
   validatorAddCardForm.resetValidation();
   formAddCard.open();
 });
