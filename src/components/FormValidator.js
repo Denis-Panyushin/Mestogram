@@ -5,7 +5,7 @@ export default class FormValidator {
     this._inactiveButtonClass = configValid.inactiveButtonClass;//Класс неактивной кнопке отправки
     this._inputErrorClass = configValid.inputErrorClass;//Класс невалидного поля
     this._errorClass = configValid.errorClass;//Класс ошибки
-    this._form = form;//Класс формы
+    this._form = document.querySelector(form);//Класс формы
     this._submitButton = this._form.querySelector(this._submitButtonSelector);//Кнопка отправки конкретной формы
     this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));//Находим все поля ввода
   }
