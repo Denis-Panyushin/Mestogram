@@ -4,6 +4,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import {
   initialCards,
   infoName,
@@ -17,29 +18,37 @@ import {
   jobInput,
   configValid
 } from "../utils/constants.js"
-import './index.css';
 
+//import './index.css';
+const api = new Api({
+  address: 'https://mesto.nomoreparties.co/v1/cohort-35',
+  token: '3c1333af-1822-40dd-897e-bbe104819da6'
+})
 const popupImage = new PopupWithImage(imagePopup);
 
 //Функция создания карточки
-function createCard(item) {
-  const listItem =  new Card(item, '.template-element', {
+function createCard(data) {
+  const listItem =  new Card(data, '.template-element', {
     handleCardClick: () => {
-     popupImage.open(item);
+     popupImage.open(data);
     }
   }).generateEl();
   return listItem
 }
 
+const cards = api.getCards()
+              .then(data => {
+              cardList.renderItems(data);
+              })
+              .catch(err => console.log(err))
+
 const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const cardEl = createCard(item);
-    cardList.addItem(cardEl);
+  renderer: (data) => {
+    cardList.addItem(createCard(data))
   }
 }, '.elements');
 
-cardList.renderItems();
+
 
 //Добавление валидации на страницу
 const validatorProfileForm = new FormValidator(configValid, profileForm);
@@ -52,10 +61,6 @@ const enableValidation = () => {
 
 enableValidation(configValid);
 
-const aboutUserClass = new UserInfo({
-  userName: infoName,
-  userJob: description
-});
 
 const formProfileEdit = new PopupWithForm(profileForm, {
   handleFormSubmit: ({ name, description }) => {
@@ -73,10 +78,14 @@ openProfileFormBtn.addEventListener('click', function () {
 })
 
 const formAddCard = new PopupWithForm(addCardForm, {
-  handleFormSubmit: ({ location, link }) => {
-    const newCard = createCard({ name: location, link: link });
-    cardList.addItem(newCard);
-    formAddCard.close();
+  handleFormSubmit: (data) => {
+    api.addCard(data)
+    .then(data => {
+      const newCard = createCard({ data });
+      cardList.addItem(newCard);
+      formAddCard.close();
+    })
+    .catch(err => console.log(err))
   }
 });
 
@@ -89,3 +98,4 @@ openAddCardFormBtn.addEventListener('click', function () {
 formAddCard.setEventListeners();
 formProfileEdit.setEventListeners();
 popupImage.setEventListeners();
+

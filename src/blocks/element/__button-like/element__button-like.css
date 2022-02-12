@@ -6,8 +6,6 @@
   padding: 0;
   margin: 0;
   align-self: center;
-  margin-left: 2px;
-  margin-right: auto;
   background-image: url(../../../image/like.png);
 }
 .element__button-like:hover {

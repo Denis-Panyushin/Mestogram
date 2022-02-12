@@ -34,6 +34,7 @@ export const addCardForm = '.popup_type_add'; //Форма добавления 
 export const openAddCardFormBtn = document.querySelector('.profile__add-button'); //Кнопка открытия попапа добавления карточки
 export const openProfileFormBtn = document.querySelector('.profile-info__edit-button'); //Кнопка открытия попапа редактирования страницы
 export const imagePopup = '.popup_type_image'; //Попап изображения
+export const cardDelPopup = '.popup_type_card-delete';
 export const configValid = {
   formSelector: '.popup__form',
   inputSelector: '.popup__text',
