@@ -3,13 +3,9 @@
   height: 120px;
   border-radius: 50%;
   transition:  linear .5s;
-}
-
-.profile__avatar::before {
-  background-image: url(../../../image/edit-avatar-button.svg);
+  position: relative;
 }
 
 .profile__avatar:hover {
   opacity: .7;
-  background: url(../../../image/Vector.jpg);
 }

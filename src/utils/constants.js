@@ -35,6 +35,9 @@ export const openAddCardFormBtn = document.querySelector('.profile__add-button')
 export const openProfileFormBtn = document.querySelector('.profile-info__edit-button'); //Кнопка открытия попапа редактирования страницы
 export const imagePopup = '.popup_type_image'; //Попап изображения
 export const cardDelPopup = '.popup_type_card-delete';
+export const avatarEditForm = '.popup_type_avatar';
+export const openAvatarEditFormBtn = document.querySelector('.profile__avatar');
+export const deleteCardBtn = document.querySelector('.element__button-delete');
 export const configValid = {
   formSelector: '.popup__form',
   inputSelector: '.popup__text',

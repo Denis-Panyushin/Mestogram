@@ -1,0 +1,11 @@
+.profile__edit-avatar-button {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+}
+
+.profile__edit-avatar-button:hover {
+  display: flex;
+}

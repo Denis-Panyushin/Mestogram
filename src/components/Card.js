@@ -1,9 +1,15 @@
 export default class Card {
-  constructor (data, elSelector, { handleCardClick }) {
+  constructor (data, elSelector, userId, { handleCardClick, handleLike, handleDelete }) {
     this._link = data.link;//Ссылка на картинку
     this._name = data.name;//Имя картинки
+    this._ownerId = data.owner._id;
+    this._likes = data.likes;
+    this._cardId = data._id;
     this._elSelector = elSelector;//Селектор карточки
+    this._userId = userId;
     this._handleCardClick = handleCardClick;
+    this._handleLike = handleLike;
+    this._handleDelete = handleDelete;
   }
 
   //Находим в ДОМ и клонируем
@@ -25,18 +31,36 @@ export default class Card {
     this._element.querySelector('.element__image').src = this._link;
     this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__description').textContent = this._name;
+    this._element.querySelector('.element__likes').textContent = this._likes.length;
+    this._removeDeleteBtn();
 
     return this._element;
   }
 
+  getCardId() {
+    return this._cardId
+  }
+
   //Функция лайка
   _likeEl() {
+    this._handleLike()
     this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active');
+  }
+
+  _removeDeleteBtn() {
+    if(this._ownerId !== this._userId) {
+      this._element.querySelector('.element__button-delete').remove();
+    }
+  }
+
+  deleteCard() {
+    this._element.remove();
+    this._element = null
   }
 
   //Функция удаления
   _deleteEl() {
-    this._element.remove();
+    this._handleDelete();
   }
 
   //Открытие попапа карточки
@@ -48,6 +72,7 @@ export default class Card {
   _setEventListeners() {
     this._element.querySelector('.element__button-delete').addEventListener('click', () => {
       this._deleteEl();
+      console.log(this._cardId)
     })
 
     this._element.querySelector('.element__button-like').addEventListener('click', () => {
