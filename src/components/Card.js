@@ -32,6 +32,7 @@ export default class Card {
     this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__description').textContent = this._name;
     this._element.querySelector('.element__likes').textContent = this._likes.length;
+    this.setLikes(this._likes);
     this._removeDeleteBtn();
 
     return this._element;
@@ -41,10 +42,34 @@ export default class Card {
     return this._cardId
   }
 
+  setLikes(newLikes) {
+    this._likes = newLikes;
+    const likeCount = this._element.querySelector('.element__likes');
+    likeCount.textContent = this._likes.length;
+
+    if(this.isLiked()) {
+      this._addLike();
+    } else {
+      this._removeLike();
+    }
+  }
+
+  isLiked() {
+    const userLike = this._likes.find(user => user._id === this._userId);
+    return userLike
+  }
+
+  _addLike() {
+    this._element.querySelector('.element__button-like').classList.add('element__button-like_active');
+  }
+
+  _removeLike() {
+    this._element.querySelector('.element__button-like').classList.remove('element__button-like_active');
+  }
+
   //Функция лайка
   _likeEl() {
     this._handleLike()
-    this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active');
   }
 
   _removeDeleteBtn() {

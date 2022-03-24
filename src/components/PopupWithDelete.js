@@ -18,5 +18,13 @@ export default class PopupWithDelete extends Popup {
     });
     super.setEventListeners();
   }
+
+  renderLoading(isLoading) {
+    if(isLoading) {
+      this._submitButton.textContent = 'Сохранение...'
+    } else {
+      this._submitButton.textContent = 'Да'
+    }
+  }
 }
 

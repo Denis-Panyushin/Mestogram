@@ -41,38 +41,54 @@ api.getUserInfo()
   })
   .catch(err => console.log(err))
 
-
-let listItem;
-let card
 //Функция создания карточки
 function createCard(data) {
-  listItem =  new Card(data, '.template-element', aboutUserInfo.getId(), {
+  const listItem =  new Card(data, '.template-element', aboutUserInfo.getId(), {
     handleCardClick: () => {
      popupImage.open(data);
     },
     handleDelete: () => {
-      formDeleteCard.setSubmitAction(() => api.deleteCard(data._id)
-                                              .then(() => {
-                                                listItem.deleteCard();
-                                                formDeleteCard.close()
-                                              })
-                                              .catch(err => console.log(err))
-                                              )
+      formDeleteCard.setSubmitAction(() =>
+      formDeleteCard.renderLoading(true),
+      api.deleteCard(data._id)
+        .then(() => {
+          listItem.deleteCard();
+          formDeleteCard.close()
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          formDeleteCard.renderLoading(false)
+        })
+        )
       formDeleteCard.open()
     },
     handleLike: () => {
-      api.addLike
+      if(listItem.isLiked()){
+        api.deleteLike(data._id)
+        .then(res => {
+          listItem.setLikes(res.likes)
+        })
+        .catch(err => console.log(err))
+      } else {
+        api.addLike(data._id)
+        .then(res => {
+          listItem.setLikes(res.likes)
+        })
+        .catch(err => console.log(err))
+      }
     }
   });
   return listItem.generateEl();
 }
 
 const deleteCardHandler = () => {
-  console.log('deleteCardHandler');
+  console.log()
 }
 
 const formDeleteCard = new PopupWithDelete(cardDelPopup, {
-  handleFormSubmit: deleteCardHandler,
+  handleFormSubmit: () => {
+    deleteCardHandler
+  },
 })
 
 const cardList = new Section({
@@ -102,12 +118,16 @@ enableValidation(configValid);
 
 const formAvatarEdit = new PopupWithForm(avatarEditForm, {
   handleFormSubmit: ({ avatar }) => {
+    formAvatarEdit.renderLoading(true),
     api.setAvatar({ avatar })
     .then(() => {
       aboutUserInfo.setAvatar({ avatar })
       formAvatarEdit.close();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(() => {
+      formAvatarEdit.renderLoading(false)
+    })
   }
 })
 
@@ -117,31 +137,44 @@ openAvatarEditFormBtn.addEventListener('click', function () {
 })
 
 const formProfileEdit = new PopupWithForm(profileForm, {
-  handleFormSubmit: ({ name, description }) => {
-    aboutUserClass.setUserInfo({ name, description });
-    formProfileEdit.close();
+  handleFormSubmit: (data) => {
+    formProfileEdit.renderLoading(true)
+    api.setUserInfo(data)
+    .then((data) => {
+      aboutUserInfo.setUserInfo(data);
+      formProfileEdit.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => {
+      formProfileEdit.renderLoading(false)
+    })
   }
 });
 
 openProfileFormBtn.addEventListener('click', function () {
   formProfileEdit.open();
+  nameInput.value = infoName.textContent;
+  jobInput.value = description.textContent;
   validatorProfileForm.resetValidation();
 })
 
 const formAddCard = new PopupWithForm(addCardForm, {
   handleFormSubmit: (data) => {
-    api.addCard(data, aboutUserInfo.getId())
-    .then((data) => {
-      cardList.addItem(createCard(data));
+    formAddCard.renderLoading(true)
+    api.addCard(data)
+    .then(data => {
+      const newCard = createCard(data);
+      cardList.addItem(newCard);
     })
     .then(() =>{
       formAddCard.close()
     })
     .catch(err => console.log(err))
+    .finally(() => {
+      formAddCard.renderLoading(false)
+    })
   }
 });
-
-console.log()
 
 openAddCardFormBtn.addEventListener('click', function () {
   validatorAddCardForm.resetValidation();

@@ -101,16 +101,11 @@ export default class Api {
     })
   }
 
-  updateLikeCard({ cardId, isLiked }) {
-    return isLiked ? this._deleteLike(cardId) : this._addLike(cardId);
-  }
-
-  addLike(cardid) {
-    return fetch(`${this._adress}/cards/${cardid}/likes`, {
+  addLike(cardId) {
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         authorization: this._token,
-        'Content-type': 'application/json'
       }
     }).then(response => {
       if (response.ok) {
@@ -120,12 +115,11 @@ export default class Api {
     })
   }
 
-  deleteLike(cardid) {
-    return fetch(`${this._adress}/cards/${cardid}/likes`, {
+  deleteLike(cardId) {
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: this._token,
-        'Content-type': 'application/json'
       }
     }).then(response => {
       if (response.ok) {

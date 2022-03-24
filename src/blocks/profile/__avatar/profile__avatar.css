@@ -3,9 +3,20 @@
   height: 120px;
   border-radius: 50%;
   transition:  linear .5s;
-  position: relative;
+  display: flex;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .profile__avatar:hover {
   opacity: .7;
+}
+
+.profile__avatar:hover::before {
+  content: url('../../../image/edit-avatar-button.svg');
+  width: 26px;
+  height: 26px;
+  margin: auto;
+  opacity: 1;
 }
