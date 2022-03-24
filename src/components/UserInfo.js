@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor({ data }) {
+  constructor(data) {
     this._userName = data.name;
     this._userJob = data.about;
     this._avatar = data.avatar;
@@ -14,8 +14,13 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    this._nameSelector.textContent = this._userName;
-    this._infoSelector.textContent = this._userJob;
+    this.userData = {
+      userName: this._nameSelector.textContent = this._userName,
+      userJob : this._infoSelector.textContent = this._userJob
+    }
+    console.log(this.userData)
+    /*this._nameSelector.textContent = this._userName;
+    this._infoSelector.textContent = this._userJob;*/
     this._avatarSelector.style.backgroundImage = `url('${this._avatar}')`;
   }
 

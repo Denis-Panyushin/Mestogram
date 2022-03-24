@@ -33,11 +33,13 @@ const popupImage = new PopupWithImage(imagePopup);
 
 let aboutUserInfo;
 
-api.getUserInfo()
-  .then(data => {
-  aboutUserInfo = new UserInfo({ data });
-  const userInfo = aboutUserInfo.getUserInfo();
-  console.log(aboutUserInfo.getId())
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cards]) => {
+    aboutUserInfo = userData._id
+    aboutUserInfo = new UserInfo(userData);
+    const userInfo = aboutUserInfo.getUserInfo();
+    console.log(aboutUserInfo.getId())
+    cardList.renderItems(cards);
   })
   .catch(err => console.log(err))
 
@@ -97,12 +99,6 @@ const cardList = new Section({
   }
 }, '.elements');
 
-api.getCards()
-  .then(data => {
-    cardList.renderItems(data);
-  })
-  .catch(err => console.log(err))
-
 //Добавление валидации на страницу
 const validatorProfileForm = new FormValidator(configValid, profileForm);
 const validatorAddCardForm = new FormValidator(configValid, addCardForm);
@@ -153,8 +149,8 @@ const formProfileEdit = new PopupWithForm(profileForm, {
 
 openProfileFormBtn.addEventListener('click', function () {
   formProfileEdit.open();
-  nameInput.value = infoName.textContent;
-  jobInput.value = description.textContent;
+  nameInput.value = aboutUserInfo.userName;
+  jobInput.value = aboutUserInfo.userJob;
   validatorProfileForm.resetValidation();
 })
 
