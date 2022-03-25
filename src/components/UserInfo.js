@@ -16,11 +16,15 @@ export default class UserInfo {
   getUserInfo() {
     this._nameSelector.textContent = this._userName;
     this._infoSelector.textContent = this._userJob;
-    this._avatarSelector.style.backgroundImage = `url('${this._avatar}')`;
+    //this._avatarSelector.style.backgroundImage = `url('${this._avatar}')`;
     return {
       name: this._nameSelector.textContent,
       about: this._infoSelector.textContent
     }
+  }
+
+  getAvatar() {
+    this._avatarSelector.style.backgroundImage = `url('${this._avatar}')`;
   }
 
   setUserInfo({ name, about }) {

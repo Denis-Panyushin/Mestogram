@@ -33,7 +33,7 @@ export default class Card {
     this._element.querySelector('.element__description').textContent = this._name;
     this._likeCount = this._element.querySelector('.element__likes')
     this._likeCount.textContent = this._likes.length;
-    this.isLiked();
+    this.setLikes(this._likes);
     this._removeDeleteBtn();
 
     return this._element;

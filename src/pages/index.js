@@ -38,6 +38,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
     aboutUserInfo = userData._id
     aboutUserInfo = new UserInfo(userData);
     const userInfo = aboutUserInfo.getUserInfo();
+    const userAvatar = aboutUserInfo.getAvatar();
     console.log(aboutUserInfo.getId())
     cardList.renderItems(cards);
   })
