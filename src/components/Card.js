@@ -10,7 +10,6 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleLike = handleLike;
     this._handleDelete = handleDelete;
-    this._likeCount = document.querySelector('.element__likes')
   }
 
   //Находим в ДОМ и клонируем
@@ -32,6 +31,7 @@ export default class Card {
     this._element.querySelector('.element__image').src = this._link;
     this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__description').textContent = this._name;
+    this._likeCount = this._element.querySelector('.element__likes')
     this._likeCount.textContent = this._likes.length;
     this.isLiked();
     this._removeDeleteBtn();
@@ -47,7 +47,6 @@ export default class Card {
   setLikes(newLikes) {
     this._likes = newLikes;
     this._likeCount.textContent = this._likes.length;
-
     if(this.isLiked()) {
       this._addLike();
     } else {

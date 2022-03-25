@@ -149,8 +149,9 @@ const formProfileEdit = new PopupWithForm(profileForm, {
 
 openProfileFormBtn.addEventListener('click', function () {
   formProfileEdit.open();
-  nameInput.value = aboutUserInfo.userName;
-  jobInput.value = aboutUserInfo.userJob;
+  const { name, about } = aboutUserInfo.getUserInfo()
+  nameInput.value = name;
+  jobInput.value = about;
   validatorProfileForm.resetValidation();
 })
 

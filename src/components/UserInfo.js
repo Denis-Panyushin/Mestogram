@@ -14,14 +14,13 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    this.userData = {
-      userName: this._nameSelector.textContent = this._userName,
-      userJob : this._infoSelector.textContent = this._userJob
-    }
-    console.log(this.userData)
-    /*this._nameSelector.textContent = this._userName;
-    this._infoSelector.textContent = this._userJob;*/
+    this._nameSelector.textContent = this._userName;
+    this._infoSelector.textContent = this._userJob;
     this._avatarSelector.style.backgroundImage = `url('${this._avatar}')`;
+    return {
+      name: this._nameSelector.textContent,
+      about: this._infoSelector.textContent
+    }
   }
 
   setUserInfo({ name, about }) {
@@ -30,6 +29,6 @@ export default class UserInfo {
   }
 
   setAvatar({ avatar }) {
-    this._avatarSelector.src = avatar;
+    this._avatarSelector.style.backgroundImage = `url('${avatar}')`;
   }
 }
