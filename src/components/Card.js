@@ -97,7 +97,6 @@ export default class Card {
   _setEventListeners() {
     this._element.querySelector('.element__button-delete').addEventListener('click', () => {
       this._deleteEl();
-      console.log(this._cardId)
     })
 
     this._element.querySelector('.element__button-like').addEventListener('click', () => {

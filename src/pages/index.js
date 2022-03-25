@@ -50,7 +50,8 @@ function createCard(data) {
      popupImage.open(data);
     },
     handleDelete: () => {
-      formDeleteCard.setSubmitAction(() =>
+      formDeleteCard.open()
+      formDeleteCard.setSubmitAction(() => {
       formDeleteCard.renderLoading(true),
       api.deleteCard(data._id)
         .then(() => {
@@ -61,8 +62,7 @@ function createCard(data) {
         .finally(() => {
           formDeleteCard.renderLoading(false)
         })
-        )
-      formDeleteCard.open()
+      })
     },
     handleLike: () => {
       if(listItem.isLiked()){
